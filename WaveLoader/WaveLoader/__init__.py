@@ -55,7 +55,7 @@ class WaveLoader:
     def play_sample_bytes(self, sample_bytes):
         proc = subprocess.Popen("sox -traw -r 8000 -b 16 -e signed -c 1 - -tcoreaudio", stdin=subprocess.PIPE,
                          shell=True)
-        time.sleep(3)
+        #time.sleep(3)
         proc.communicate(sample_bytes)
 
 

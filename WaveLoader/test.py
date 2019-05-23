@@ -20,7 +20,7 @@ wl.write_wave(t, './output.wav', 1, 2, 8000)
 
 #write pemex
 buff = [data.tolist()]
-for x in range(5):
+for x in range(25):
     data, label = wl.get_sample()
     buff.append(data.tolist())
 
