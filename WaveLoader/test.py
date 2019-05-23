@@ -26,3 +26,5 @@ for x in range(5):
 
 pemex = torch.tensor(buff)
 wl.write_wave(pemex, './output-pemex.wav', 1, 2, 8000)
+
+wl.play_sample_tensor(pemex, 1, 2, 8000)

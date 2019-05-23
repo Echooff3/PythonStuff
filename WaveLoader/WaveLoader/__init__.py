@@ -2,7 +2,8 @@ import wave
 import torch
 import struct
 import numpy as np
-
+import subprocess
+import time
 
 class WaveLoader:
     def __init__(self, wave_file_name):
@@ -51,4 +52,18 @@ class WaveLoader:
             blist = struct.pack(fmt, *slist)
             ww.writeframesraw(blist)
 
+    def play_sample_bytes(self, sample_bytes):
+        proc = subprocess.Popen("sox -traw -r 8000 -b 16 -e signed -c 1 - -tcoreaudio", stdin=subprocess.PIPE,
+                         shell=True)
+        time.sleep(3)
+        proc.communicate(sample_bytes)
 
+
+    def play_sample_tensor(self, tensors, nchannels, sampwidth, framerate):
+        _list = tensors.tolist()
+        fmt = '<%dh' % framerate
+        bytes_out = bytearray()
+        for sample in _list:
+            slist = np.short(sample).tolist()
+            bytes_out += struct.pack(fmt, *slist)
+        self.play_sample_bytes(bytes_out)

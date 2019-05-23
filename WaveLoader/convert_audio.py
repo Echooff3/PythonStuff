@@ -10,4 +10,7 @@ import subprocess
 for ext in ('*.wav', '*.mp3', '*.ogg'):
     for x in glob(join("./audio", ext)):
         print(basename(x))
-        subprocess.run(["sox", x, '-r', '8000', '-c', '1', join('./audio-converted',basename(x))])
+        subprocess.run(["sox", x, '-r', '8000', '-c', '1', join('./audio-converted', basename(x))])
+
+
+# sox_audio = subprocess.Popen( "sox -traw -r 44100 -b 8 -e signed - -tcoreaudio", stdin=subprocess.PIPE, shell=True )
