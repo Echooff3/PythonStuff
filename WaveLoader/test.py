@@ -1,6 +1,9 @@
 from WaveLoader import WaveLoader
 import torch
 
+# sox convert
+# sox input.wav -r 8000 output.wav
+
 sample = './pemex8k.wav'
 wl = WaveLoader(sample)  # type WaveLoader
 data, label = wl.get_sample()

@@ -46,12 +46,9 @@ class WaveLoader:
         ww.setsampwidth(sampwidth)
         ww.setframerate(framerate)
         fmt = '<%dh' % framerate
-        barr = bytearray()
         for sample in _list:
             slist = np.short(sample).tolist()
             blist = struct.pack(fmt, *slist)
-            barr += blist
-
-        ww.writeframesraw(barr)
+            ww.writeframesraw(blist)
 
 
